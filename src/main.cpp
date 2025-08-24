@@ -15,9 +15,9 @@ int main()
 	Grid grid
 	(
 	 	 // Grid Position
-		 sf::Vector2f(0, 0), 
+		 sf::Vector2f(100, 50), 
 		 // Grid Size
-		 sf::Vector2i(10, 6), 
+		 sf::Vector2i(10, 5), 
 		 // Cell Size
 		 sf::Vector2i(16, 16), 
 		 // Scale
@@ -26,10 +26,12 @@ int main()
 		 // Line Thickness
 		 2
 	);
+
 	MouseTile mouseTile
 	(
 		sf::Vector2i(16, 16), 
-		sf::Vector2f(10, 10)
+		sf::Vector2f(10, 10),
+		sf::Vector2f(100, 50)
 	);
 
 	//-----INITIALIZE-----

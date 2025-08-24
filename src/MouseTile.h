@@ -9,9 +9,15 @@ class MouseTile
 
 		sf::Vector2i m_tileSize;
 		sf::Vector2f m_tileScale;
+		sf::Vector2f m_offset;
 
 	public:
-		MouseTile(const sf::Vector2i& tileSize, const sf::Vector2f& tileScale);
+		MouseTile
+		(
+			const sf::Vector2i& tileSize, 
+			const sf::Vector2f& tileScale,
+			const sf::Vector2f& offset
+		);
 		~MouseTile();
 
 		void Initialize();
