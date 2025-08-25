@@ -29,7 +29,7 @@ void MouseTile::Load()
 	m_tile.setScale(m_tileScale);
 }
 
-void MouseTile::Update(double deltaTime, sf::Vector2f mousePosition)
+void MouseTile::Update(double deltaTime, sf::Vector2f mousePosition, void (*OnGridClick)(int))
 {
 	int gridIndexX = (mousePosition.x - m_offset.x) / (m_tileSize.x * m_tileScale.x);
 	int x = gridIndexX * (m_tileSize.x * m_tileScale.x) + m_offset.x;
@@ -42,6 +42,7 @@ void MouseTile::Update(double deltaTime, sf::Vector2f mousePosition)
 	{
 		int index = gridIndexX + gridIndexY * 10;
 		std::cout << index << std::endl;
+		OnGridClick(index);
 	}
 }
 

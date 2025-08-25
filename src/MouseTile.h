@@ -22,7 +22,7 @@ class MouseTile
 
 		void Initialize();
 		void Load();
-		void Update(double deltaTime, sf::Vector2f mousePosition);
+		void Update(double deltaTime, sf::Vector2f mousePosition, void (*OnGridClick)(int));
 		void Draw(sf::RenderWindow& window);
 };	
 
