@@ -8,15 +8,15 @@
 class Map
 {
 	private:
-		MouseTile m_mouseTile;
+		MouseTile& m_mouseTile;
 		sf::Sprite* m_mapSprites;
 
 	public:
-		Map(const MouseTile& mouseTile);
+		Map(MouseTile& mouseTile);
 		~Map();	
 
 		void Initialize();
 		void Load();
-		void Update(double deltaTime);
+		void Update(double deltaTime, const sf::Vector2f& mousePosition);
 		void Draw(sf::RenderWindow& window);
 };

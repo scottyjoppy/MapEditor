@@ -9,7 +9,8 @@ MouseTile::MouseTile
 ) :
 	m_tileSize(tileSize), 
 	m_tileScale(tileScale),
-	m_offset(offset)
+	m_offset(offset),
+    m_isMouseOnGrid(false)
 {
 }
 
@@ -29,24 +30,28 @@ void MouseTile::Load()
 	m_tile.setScale(m_tileScale);
 }
 
-void MouseTile::Update(double deltaTime, sf::Vector2f mousePosition, void (*OnGridClick)(int))
+void MouseTile::Update(double deltaTime, const sf::Vector2f& mousePosition)
 {
-	int gridIndexX = (mousePosition.x - m_offset.x) / (m_tileSize.x * m_tileScale.x);
-	int x = gridIndexX * (m_tileSize.x * m_tileScale.x) + m_offset.x;
-	int gridIndexY = (mousePosition.y - m_offset.y) / (m_tileSize.y * m_tileScale.y);
-	int y = gridIndexY * (m_tileSize.y * m_tileScale.y) + m_offset.y;
+    m_tileGridPosition.x = (mousePosition.x - m_offset.x) / (m_tileSize.x * m_tileScale.x);
+    m_tileGridPosition.y = (mousePosition.y - m_offset.y) / (m_tileSize.y * m_tileScale.y);
 
-	m_tile.setPosition(sf::Vector2f(x, y));
+    m_tilePosition.x = m_tileGridPosition.x * (m_tileSize.x * m_tileScale.x) + m_offset.x;
+    m_tilePosition.y = m_tileGridPosition.y * (m_tileSize.y * m_tileScale.y) + m_offset.y;
 
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
-	{
-		int index = gridIndexX + gridIndexY * 10;
-		std::cout << index << std::endl;
-		OnGridClick(index);
-	}
+    m_tile.setPosition(m_tilePosition);
 }
 
 void MouseTile::Draw(sf::RenderWindow& window)
 {
 	window.draw(m_tile);
+}
+
+bool MouseTile::IsMouseClickedOnTile(sf::Vector2f& tilePosition, const sf::Vector2f& mousePosition) const 
+{
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+    {
+        tilePosition = m_tilePosition; 
+        return true;
+    }
+    return false;
 }
