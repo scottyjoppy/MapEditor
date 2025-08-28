@@ -15,6 +15,8 @@ class MouseTile
 		sf::Vector2f m_offset;
 
         bool m_isMouseOnGrid;
+        int number;
+        double keyCooldown;
 
 	public:
 		MouseTile
@@ -30,6 +32,13 @@ class MouseTile
 		void Update(double deltaTime, const sf::Vector2f& mousePosition);
 		void Draw(sf::RenderWindow& window);
 
-        bool IsMouseClickedOnTile(sf::Vector2f& tilePosition, const sf::Vector2f& mousePosition) const;
+        bool IsMouseClickedOnTile
+        (
+             sf::Vector2f& tilePosition, 
+             sf::Vector2i& gridPosition, 
+             const sf::Vector2f& mousePosition
+        ) const;
+
+        inline const sf::Sprite& GetSprite() const { return m_tile; }
 };	
 

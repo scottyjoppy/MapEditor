@@ -35,7 +35,7 @@ int main()
 		sf::Vector2f(100, 50)
 	);
     
-    Map map(mouseTile);
+    Map map(grid, mouseTile);
 
 	//-----INITIALIZE-----
 
